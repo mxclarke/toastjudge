@@ -17,7 +17,6 @@ import { ContestService } from './contest.service';
 })
 export class ContestsComponent implements OnInit {
   contests: Contest[];
-  contestsSelected: Contest[] = [];
 
   constructor(private contestService: ContestService) {}
 
@@ -31,17 +30,11 @@ export class ContestsComponent implements OnInit {
   }
 
   toggleContest(contest:Contest, isChecked: boolean) {
-  console.log("Selection of " + contest.contestType);
-  console.log(" len is " + this.contestsSelected.length);
-    var idx = -1;
     if ( isChecked ) {
-      this.contestsSelected.push(contest);
+      this.contestService.addSelected(contest);
     } else {
-      idx = this.contestsSelected.indexOf(contest);
-      if ( idx > -1 ) {
-        this.contestsSelected.splice(idx, 1); // remove 1 item
+      this.contestService.removeSelected(contest);
       }
     }
-    console.log(" finished len is " + this.contestsSelected.length);
   }
 }
