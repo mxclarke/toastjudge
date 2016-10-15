@@ -33,9 +33,7 @@ export const CATEGORIED: CategoriedContest[] = [
       new Category('Content',
         [
           new JudgingItem('Speech development', 'Structure, organisation, support material',
-           20, 19, 13, 8)
-        ],
-        [
+           20, 19, 13, 8),
           new JudgingItem('Effectiveness', 'Achievement of purpose, interest, reception',
            15, 14, 10, 5)
         ]
