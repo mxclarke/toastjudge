@@ -5,7 +5,7 @@ import { ContestService } from './contest.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'contests',
+    selector: 'setup',
     template: `
       <ul>
         <li *ngFor="let contest of contests" (click)="onSelect(contest)">
