@@ -34,7 +34,6 @@ export class ContestsComponent implements OnInit {
       this.contestService.addSelected(contest);
     } else {
       this.contestService.removeSelected(contest);
-      }
     }
   }
 }

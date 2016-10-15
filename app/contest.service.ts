@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
 import { Contest } from './contest';
-import { CONTESTS } from './default-contests';
+import { CATEGORIED } from './default-contests';
+import { UNCATEGORIED } from './default-contests';
+
+
 
 @Injectable()
 export class ContestService {
@@ -9,13 +12,19 @@ export class ContestService {
 
   // Returns a list of all possible contests.
   getContests(): Promise<Contest[]> {
-    return Promise.resolve(CONTESTS);
+    // At the moment we're just fetching from our server-side JSON, but
+    // this could change in the future to fetch from a remote service,
+    // so the return type of this method should stil be a Promise object.
+    // First, combine the two array types.
+    let contests: Contest[] = (<Contest[]>UNCATEGORIED).concat(CATEGORIED);
+
+    return Promise.resolve(contests);
   }
 
   // Returns a list of all the contests that the user (judge) has selected
   // to judge.
   getContestSelected(): Promise<Contest[]> {
-    return Promise.resolve(contestsSelected);
+    return Promise.resolve(this.contestsSelected);
   }
 
   // Adds the given contest to the list of selected. Returns false if the

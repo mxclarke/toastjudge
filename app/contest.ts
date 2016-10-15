@@ -1,3 +1,3 @@
-export class Contest {
+export interface Contest {
   contestType: string;
 }
