@@ -8,15 +8,20 @@ import { ContestService } from './contest.service';
     selector: 'contests',
     template: `
       <ul>
-        <li *ngFor="let contest of contests">
-          <input type="checkbox" name="isActive" (change)="toggleContest(contest, $event.target.checked)">
+        <li *ngFor="let contest of contests" (click)="onSelect(contest)">
+          <input type="checkbox" name="isActive"
+            (change)="toggleContest(contest, $event.target.checked)"
+            (click)="$event.stopPropagation()"
+          >
           {{contest.contestType}}
         </li>
       </ul>
+      <contest [contest]="selectedContest"></contest>
     `
 })
 export class ContestsComponent implements OnInit {
   contests: Contest[];
+  selectedContest: Contest;
 
   constructor(private contestService: ContestService) {}
 
@@ -35,5 +40,10 @@ export class ContestsComponent implements OnInit {
     } else {
       this.contestService.removeSelected(contest);
     }
+  }
+
+  onSelect(contest: Contest): void {
+  console.log("SELECTED " + contest.contestType);
+    this.selectedContest = contest;
   }
 }

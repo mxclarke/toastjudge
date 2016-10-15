@@ -1,0 +1,9 @@
+<div *ngIf = "contest">
+  <h2>{{contest.contestType}} contest</h2>
+  <div *ngIf = "!isCategoried(contest)">
+    This is an uncategoried contest
+  </div>
+  <div *ngIf = "isCategoried(contest)">
+    This is an categoried contest
+  </div>
+</div>

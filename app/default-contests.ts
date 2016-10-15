@@ -1,24 +1,20 @@
 import { Contest } from './contest';
 import { UncategoriedContest } from './uncategoried-contest';
 import { CategoriedContest } from './categoried-contest';
+import { Category } from './category';
+import { JudgingItem } from './judging-item';
 
 export const UNCATEGORIED: UncategoriedContest[] = [
-{contestType: 'Evaluation',
- judgingItems: [
-  {name: 'Analytical Quality', description: 'Clear, focused',
-   maxExcellent: 40, maxVeryGood: 39, maxGood: 27, maxFair: 16
-  }
- ]}
+  new UncategoriedContest( 'Evaluation',
+    [
+      new JudgingItem('Analytical Quality', 'Clear, focused',
+       40, 39, 27, 16
+    ]
+  )
 ];
 
 export const CATEGORIED: CategoriedContest[] = [
-  {contestType: 'Table topics',
-   categories: []
-  },
-  {contestType: 'Humorous',
-   categories: []
-  },
-  {contestType: 'International',
-   categories: []
-  },
+  new CategoriedContest('Table topics', []),
+  new CategoriedContest('Humorous', []),
+  new CategoriedContest('International', [])
 ];
