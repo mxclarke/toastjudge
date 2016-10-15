@@ -2,8 +2,13 @@
   <h2>{{contest.contestType}} contest</h2>
   <div *ngIf = "!isCategoried(contest)">
     This is an uncategoried contest
+    <judging-items-manager [judgingItems]="contest.judgingItems"></judging-items-manager>
   </div>
   <div *ngIf = "isCategoried(contest)">
     This is an categoried contest
+    <div *ngFor = "let category of contest.categories">
+      <h3>{{category.name}}</h3>
+      <judging-items-manager [judgingItems]="category.judgingItems"></judging-items-manager>
+    </div>
   </div>
 </div>

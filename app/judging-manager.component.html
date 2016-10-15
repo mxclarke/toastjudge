@@ -1,0 +1,11 @@
+<table>
+  <tr><th>JudgingItem</th><th>Excellent</th><th>Very good</th><th>Good</th><th>Fair</th></tr>
+  <tr *ngFor="let judgingItem of judgingItems">
+    <td>{{judgingItem.name}}</td>
+    <td>{{judgingItem.maxExcellent}}</td>
+    <td>{{judgingItem.maxGood+1}}-{{judgingItem.maxVeryGood}}</td>
+    <td>{{judgingItem.maxFair+1}}-{{judgingItem.maxGood}}</td>
+    <td>0-{{judgingItem.maxFair}}</td>
+    <td>{{judgingItem.description}}
+  </tr>
+</table>
