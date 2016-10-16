@@ -9,8 +9,9 @@ import { Contestant } from './contestant';
 export class ContestantService {
   private contestants: Contestant[] = []; // later will get from http
 
-  getContestants(): Promise<Contestant[]> {
-    return Promise.resolve(this.contestants);
+  getContestants(): Observable<Contestant[]> {
+    return Observable.of(this.contestants);
+    // return Promise.resolve(this.contestants);
   }
 
   // Create and add a new contestant.

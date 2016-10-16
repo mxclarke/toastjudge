@@ -16,7 +16,12 @@ export class ContestantsComponent implements OnInit {
   ngOnInit(): void {
   console.log("on init contestants");
     this.contestantService.getContestants()
-    .then(contestants => this.contestants = contestants);
+    .subscribe(
+      contestants => this.contestants = contestants,
+      error => this.handleError(<any>error)
+    );
+    // or if using a Promise return
+    // .then(contestants => this.contestants = contestants);
   }
 
   add(name: string): void {
