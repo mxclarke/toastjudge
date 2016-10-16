@@ -23,9 +23,30 @@ export const CATEGORIED: CategoriedContest[] = [
   ),
   new CategoriedContest('Humorous',
     [
-      new Category('Content', []),
-      new Category('Delivery', []),
-      new Category('Language', [])
+      new Category('Content', [
+        new JudgingItem('Speech development', 'Structure, organisation, support material',
+         15, 14, 11, 9),
+        new JudgingItem('Effectiveness', 'Achievement of purpose, interest, reception',
+         10, 9, 7, 5),
+         new JudgingItem('Speech value', 'Ideas, logic, original thought',
+           15, 14, 11, 9),
+          new JudgingItem('Audience response', 'Attentiveness, laughter, interest, reception',
+           15, 14, 11, 9)
+      ]),
+      new Category('Delivery', [
+        new JudgingItem('Physical', 'Appearance, body language, speaking area',
+          10, 9, 7, 5),
+        new JudgingItem('Voice', 'Flexibility, volume',
+          10, 9, 7, 5),
+        new JudgingItem('Manner', 'Directness, assurance, enthusiasm',
+          10, 9, 7, 5)
+      ]),
+      new Category('Language', [
+        new JudgingItem('Appropriateness', 'to speech purpose and audience',
+          10, 9, 7, 5),
+        new JudgingItem('Correctness', 'Grammar, pronunciation, word selection',
+          5, 4, 3, 2)
+      ])
     ]
   ),
   new CategoriedContest('International',

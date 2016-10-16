@@ -1,3 +1,13 @@
+<div>
+  <label>New contestant name: </label>
+   <!-- see https://github.com/angular/angular/issues/8602 -->
+  <input #contestantName>
+  <!-- we call the component's click handler and then clear
+  the input field so that it will be ready to use for another name -->
+  <button (click)="add(contestantName.value); contestantName.value=''">
+    Add
+  </button>
+</div>
 <ul>
   <li *ngFor="let contestant of contestants">{{contestant.name}}</li>
 </ul>
