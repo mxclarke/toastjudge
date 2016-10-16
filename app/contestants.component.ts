@@ -22,9 +22,23 @@ export class ContestantsComponent implements OnInit {
   add(name: string): void {
     console.log("adding " + name);
     name = name.trim();
-    if ( !name )
+    if ( !name )  // check for nothing entered
       return;
+
     this.contestantService.create(name)
-    .then(contestant => this.contestants.push(contestant));
+    .subscribe(
+      contestant => this.contestants.push(contestant),
+      error => this.handleError(<any>error)
+      //   error =>  this.errorMessage = <any>error TODO
+    );
+    // Same thing using return of PRomise
+    //.toPromise() // from Observable to Promise, needs import
+    //.then(contestant => this.contestants.push(contestant))
+    //.catch(this.handleError);
+  }
+
+  private handleError(error: any): void {
+    // TODO real error handling
+    console.error('An error occurred', error); // for demo purposes only
   }
 }
