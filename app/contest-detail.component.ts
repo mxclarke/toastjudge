@@ -16,6 +16,6 @@ export class ContestDetailComponent {
   isCategoried(contest: Contest): boolean {
     // Note: if you need to get the classname:
     //    contest.constructor.name
-    return contest instanceof CategoriedContest;
+    return contest.contestData instanceof CategoriedContest;
   }
 }

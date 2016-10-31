@@ -28,22 +28,22 @@ export class ContestJudgingComponent implements OnInit {
         if ( this.selectedContest === undefined && this.contests.length > 0) {
           this.selectedContest = this.contests[0];
         }
-        console.log("inited selectedcontest is " + this.selectedContest.contestType);
+        console.log("inited selectedcontest is " + this.selectedContest.getContestType());
       });
   }
 
   onChangeContest3(val: any): void {
-    console.log("Changed to " + val);
+    console.log("3Changed to " + val);
   //  this.logit(val);
     let contest:Contest = val as Contest;
-    console.log("    Cast to " + contest.contestType);
+    console.log("    Cast to " + contest.getContestType());
     //let contest = this.getContest(contestType);
     this.selectedContest = contest;
   }
 
 
   onChangeContest2(contest: Contest): void {
-    console.log("Changed to " + contest);
+    console.log("2Changed to " + contest);
     //let contest = this.getContest(contestType);
     this.selectedContest = contest;
   }
@@ -57,7 +57,7 @@ export class ContestJudgingComponent implements OnInit {
   // Returns a Contest of the given contestType.
   private getContest(contestType: string): Contest {
     return this.contests.find(function(elem) {
-      return elem.contestType === contestType;
+      return elem.getContestType() === contestType;
     });
     //return this.contestants.some(elem => elem.name === name);
   }

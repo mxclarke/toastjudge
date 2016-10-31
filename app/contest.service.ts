@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Contest } from './contest';
+import { ContestData } from './contest-data';
 import { CATEGORIED } from './default-contests';
 import { UNCATEGORIED } from './default-contests';
 
@@ -14,9 +15,18 @@ export class ContestService {
   getContests(): Promise<Contest[]> {
     // At the moment we're just fetching from our server-side JSON, but
     // this could change in the future to fetch from a remote service,
-    // so the return type of this method should stil be a Promise object.
-    // First, combine the two array types.
-    let contests: Contest[] = (<Contest[]>UNCATEGORIED).concat(CATEGORIED);
+    // so the return type of this method should still be a Promise object.
+    let contests: Contest[] = [];
+
+    // Combine the two array types.
+    let contestData: ContestData[]
+        = (<ContestData[]>UNCATEGORIED).concat(CATEGORIED);
+    // Use the contest data to create a list of contests.
+    contestData.forEach(
+      elem => {
+        contests.push(new Contest(elem));
+      }
+    );
 
     return Promise.resolve(contests);
   }

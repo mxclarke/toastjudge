@@ -1,4 +1,3 @@
-import { Contest } from './contest';
 import { UncategoriedContest } from './uncategoried-contest';
 import { CategoriedContest } from './categoried-contest';
 import { Category } from './category';

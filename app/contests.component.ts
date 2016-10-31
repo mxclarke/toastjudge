@@ -14,7 +14,7 @@ import { ContestService } from './contest.service';
             (click)="$event.stopPropagation()"
             [checked]="isChecked(contest)"
           >
-          {{contest.contestType}}
+          {{contest.getContestType()}}
         </li>
       </ul>
       <contest [contest]="selectedContest"></contest>
@@ -48,12 +48,13 @@ export class ContestsComponent implements OnInit {
   }
 
   onSelect(contest: Contest): void {
-  console.log("SELECTED " + contest.contestType);
+  console.log("SELECTED " + contest.getContestType());
     this.selectedContest = contest;
   }
 
   isChecked(contest: Contest): boolean {
-  console.log("is checked " + contest.contestType);
-    return this.selectedContests.some(elem => elem.contestType === contest.contestType);
+  console.log("is checked " + contest.getContestType());
+    return this.selectedContests.some(elem =>
+      elem.getContestType() === contest.getContestType());
   }
 }
