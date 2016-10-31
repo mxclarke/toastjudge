@@ -8,6 +8,16 @@
     Add
   </button>
 </div>
-<ul>
-  <li *ngFor="let contestant of contestants">{{contestant.name}}</li>
-</ul>
+<div *ngFor="let contestant of contestants">
+  <h2>Contestant: {{contestant.name}}</h2>
+  <ul>
+    <li *ngFor="let contest of contests">
+      <input type="checkbox" name="isActive"
+        (change)="toggleContest(contestant, contest, $event.target.checked)"
+        (click)="$event.stopPropagation()"
+        [checked]="isChecked(contestant, contest)"
+      >
+      {{contest.getContestType()}}
+    </li>
+  </ul>
+</div>

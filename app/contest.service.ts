@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Contest } from './contest';
 import { ContestData } from './contest-data';
+import { Contestant } from './contestant';
+
 import { CATEGORIED } from './default-contests';
 import { UNCATEGORIED } from './default-contests';
 
@@ -65,6 +67,22 @@ export class ContestService {
     } else {
       return false;
     }
+  }
+
+  // Adds the given contestant to the given contest. Returns true if the
+  // contestant was added.
+  addContestant(contestant: Contestant, contest: Contest): boolean {
+    // This could be done without accessing the service -- however, we
+    // might want to change the internals at a later date.
+    return contest.addContestant(contestant);
+  }
+
+  // Removes the given contestant from the given contest. Returns true if
+  // the contestant was removed.
+  removeContestant(contestant: Contestant, contest: Contest): boolean {
+    // This could be done without accessing the service -- however, we
+    // might want to change the internals at a later date.
+    return contest.removeContestant(contestant);
   }
 
   getCurrent(): Contest {

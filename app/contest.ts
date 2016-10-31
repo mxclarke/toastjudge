@@ -6,7 +6,7 @@ import { Contestant } from './contestant';
 
 export class Contest {
   readonly contestData: ContestData;
-  private contestants: Contestant[];
+  private contestants: Contestant[] = [];
 
   constructor(contestData: ContestData) {
     this.contestData = contestData;
