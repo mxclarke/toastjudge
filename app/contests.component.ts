@@ -39,7 +39,9 @@ export class ContestsComponent implements OnInit {
       .then(contests => this.selectedContests = contests);
   }
 
+  // Checkbox callback
   toggleContest(contest:Contest, isChecked: boolean) {
+  console.log("Checkbox callback, ischecked  " + isChecked);
     if ( isChecked ) {
       this.contestService.addSelected(contest);
     } else {
@@ -47,6 +49,7 @@ export class ContestsComponent implements OnInit {
     }
   }
 
+  // List selection handler
   onSelect(contest: Contest): void {
   console.log("SELECTED " + contest.getContestType());
     this.selectedContest = contest;
