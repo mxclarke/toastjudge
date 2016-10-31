@@ -27,8 +27,9 @@ export class ContestJudgingComponent implements OnInit {
     .then(contests => {
         if ( this.selectedContest === undefined && this.contests.length > 0) {
           this.selectedContest = this.contests[0];
+          console.log("inited selectedcontest is " + this.selectedContest.getContestType());
         }
-        console.log("inited selectedcontest is " + this.selectedContest.getContestType());
+      //  console.log("inited selectedcontest is " + this.selectedContest.getContestType());
       });
   }
 
