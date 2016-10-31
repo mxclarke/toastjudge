@@ -23,7 +23,7 @@ export class ContestService {
 
   // Returns a list of all the contests that the user (judge) has selected
   // to judge.
-  getContestSelected(): Promise<Contest[]> {
+  getSelected(): Promise<Contest[]> {
     return Promise.resolve(this.contestsSelected);
   }
 

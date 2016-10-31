@@ -8,8 +8,11 @@ import { ContestsComponent } from './contests.component';
 import { ContestDetailComponent } from './contest-detail.component';
 import { JudgingManagerComponent } from './judging-manager.component';
 import { ContestantsComponent } from './contestants.component';
+import { ContestJudgingComponent } from './contest-judging.component';
+
 import { ContestService } from './contest.service';
 import { ContestantService } from './contestant.service';
+
 
 @NgModule({
   imports: [
@@ -18,7 +21,8 @@ import { ContestantService } from './contestant.service';
     RouterModule.forRoot ([
     {path: '', redirectTo: '/setup', pathMatch: 'full'},
       {path: 'setup', component: ContestsComponent},
-      {path: 'contestants', component: ContestantsComponent}
+      {path: 'contestants', component: ContestantsComponent},
+      {path: 'judging', component: ContestJudgingComponent}
     ])
   ],
   declarations: [
@@ -26,7 +30,8 @@ import { ContestantService } from './contestant.service';
     ContestsComponent,
     ContestDetailComponent,
     JudgingManagerComponent,
-    ContestantsComponent
+    ContestantsComponent,
+    ContestJudgingComponent
   ],
   providers: [ ContestService, ContestantService ],
   bootstrap: [ AppComponent ]

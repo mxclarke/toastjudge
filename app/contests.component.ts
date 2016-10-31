@@ -12,6 +12,7 @@ import { ContestService } from './contest.service';
           <input type="checkbox" name="isActive"
             (change)="toggleContest(contest, $event.target.checked)"
             (click)="$event.stopPropagation()"
+            [checked]="isChecked(contest)"
           >
           {{contest.contestType}}
         </li>
@@ -21,6 +22,7 @@ import { ContestService } from './contest.service';
 })
 export class ContestsComponent implements OnInit {
   contests: Contest[];
+  selectedContests: Contest[];
   selectedContest: Contest;
 
   constructor(private contestService: ContestService) {}
@@ -30,8 +32,11 @@ export class ContestsComponent implements OnInit {
   }
 
   initContests(): void {
+    console.log("init ContestsComponent");
     this.contestService.getContests()
       .then(contests => this.contests = contests);
+    this.contestService.getSelected()
+      .then(contests => this.selectedContests = contests);
   }
 
   toggleContest(contest:Contest, isChecked: boolean) {
@@ -45,5 +50,10 @@ export class ContestsComponent implements OnInit {
   onSelect(contest: Contest): void {
   console.log("SELECTED " + contest.contestType);
     this.selectedContest = contest;
+  }
+
+  isChecked(contest: Contest): boolean {
+  console.log("is checked " + contest.contestType);
+    return this.selectedContests.some(elem => elem.contestType === contest.contestType);
   }
 }
