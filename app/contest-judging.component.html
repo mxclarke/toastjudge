@@ -1,7 +1,9 @@
 <h2>Judging</h2>
+<!-- http://stackoverflow.com/questions/33700266/how-can-i-get-new-selection-in-select-in-angular-2 -->
 <!-- http://stackoverflow.com/questions/35945001/binding-select-element-to-object-in-angular-2 -->
 
-<select [(ngModel)]="selectedContest" (change)="onChangeContest($event.target.value)">
+<!-- <select [(ngModel)]="selectedContest" (change)="onChangeContest($event.target.value)"> -->
+<select [(ngModel)]="selectedContest" (ngModelChange)="onChangeContest($event)">
   <option *ngFor="let contest of contests" [ngValue]="contest">{{contest.getContestType()}}</option>
 </select>
 

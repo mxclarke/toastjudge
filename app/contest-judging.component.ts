@@ -9,41 +9,39 @@ import { ContestService } from './contest.service';
   templateUrl: 'contest-judging.component.html'
 })
 export class ContestJudgingComponent implements OnInit {
-// note: html the selected attribute goes on the one that is selected
+  // note: html the selected attribute goes on the one that is selected
   private contests: Contest[];
   private selectedContest: Contest;
 
-  constructor(private contestService: ContestService) {console.log("ctor");}
+  constructor(private contestService: ContestService) {}
 
-// To save state between routed components (class is reconstructed and ngOnInit
-// called each time) is to save it to a service and then reconstruct the whole
-// thing on init. This makes sense as the selected contests could have changed
-// in the meantime.
+  // To save state between routed components (class is reconstructed & ngOnInit
+  // called each time) is to save it to a service and then reconstruct the whole
+  // thing on init. This makes sense as the selected contests could have changed
+  // in the meantime.
   ngOnInit(): void {
-    console.log("init ContestJudging");
-    console.log(" ... init ... selectedContest = " + this.selectedContest);
     this.contestService.getSelected()
     .then(contests => this.contests = contests)
     .then(contests => {
+        // Set the previous current contest, if any, and if it exists in the
+        // selected list.
+        let currentContest: Contest = this.contestService.getCurrent();
+        if ( currentContest != null && contests.indexOf(currentContest) > -1 ) {
+          this.selectedContest = currentContest;
+        }
+
+        // If there wasn't any but the list isn't empty, set it to the first.
         if ( this.selectedContest === undefined && this.contests.length > 0) {
           this.selectedContest = this.contests[0];
-          console.log("inited selectedcontest is " + this.selectedContest.getContestType());
+          // Don't bother telling the service, as you'll get the same thing
+          // next time if no change.
         }
       });
   }
 
-  onChangeContest(contestType: string): void {
-    console.log("Changed to " + contestType);
-    let contest:Contest = this.getContest(contestType);
+  onChangeContest(contest: Contest): void {
     this.selectedContest = contest;
-  }
-
-  // Returns a Contest of the given contestType.
-  private getContest(contestType: string): Contest {
-    return this.contests.find(function(elem) {
-      return elem.getContestType() === contestType;
-    });
-    //return this.contestants.some(elem => elem.name === name);
+    this.contestService.setCurrent(contest);
   }
 
 }

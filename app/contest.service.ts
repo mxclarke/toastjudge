@@ -5,12 +5,11 @@ import { ContestData } from './contest-data';
 import { CATEGORIED } from './default-contests';
 import { UNCATEGORIED } from './default-contests';
 
-
-
 @Injectable()
 export class ContestService {
   allContests: Contest[] = [];
   contestsSelected: Contest[] = [];
+  currentContest: Contest;
 
   constructor() {
     this.init();
@@ -66,6 +65,14 @@ export class ContestService {
     } else {
       return false;
     }
+  }
+
+  getCurrent(): Contest {
+    return this.currentContest;
+  }
+
+  setCurrent(contest: Contest): void {
+    this.currentContest = contest;
   }
 
   // Since Javascript only checks references for equality, using indexof on
