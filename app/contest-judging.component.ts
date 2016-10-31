@@ -15,10 +15,10 @@ export class ContestJudgingComponent implements OnInit {
 
   constructor(private contestService: ContestService) {console.log("ctor");}
 
-// IT CALLS INIT (and the ctor) EVERY SINGLE TIME. only way to save
-// state between routed components is to save it to a service and then
-// reconstruct the whole thing on init!! This makes sense as the selected
-// contests could have changed in the meantime.
+// To save state between routed components (class is reconstructed and ngOnInit
+// called each time) is to save it to a service and then reconstruct the whole
+// thing on init. This makes sense as the selected contests could have changed
+// in the meantime.
   ngOnInit(): void {
     console.log("init ContestJudging");
     console.log(" ... init ... selectedContest = " + this.selectedContest);
@@ -29,24 +29,7 @@ export class ContestJudgingComponent implements OnInit {
           this.selectedContest = this.contests[0];
           console.log("inited selectedcontest is " + this.selectedContest.getContestType());
         }
-      //  console.log("inited selectedcontest is " + this.selectedContest.getContestType());
       });
-  }
-
-  onChangeContest3(val: any): void {
-    console.log("3Changed to " + val);
-  //  this.logit(val);
-    let contest:Contest = val as Contest;
-    console.log("    Cast to " + contest.getContestType());
-    //let contest = this.getContest(contestType);
-    this.selectedContest = contest;
-  }
-
-
-  onChangeContest2(contest: Contest): void {
-    console.log("2Changed to " + contest);
-    //let contest = this.getContest(contestType);
-    this.selectedContest = contest;
   }
 
   onChangeContest(contestType: string): void {
