@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+//import {AccordionModule} from 'primeng/primeng';  //accordion and accordion tab
+
 import { Contest } from './contest';
 import { ContestService } from './contest.service';
 

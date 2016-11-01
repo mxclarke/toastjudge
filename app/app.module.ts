@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import {AccordionModule} from 'primeng/primeng';  //accordion and accordion tab
+
 import { AppComponent }  from './app.component';
 import { ContestsComponent } from './contests.component';
 import { ContestDetailComponent } from './contest-detail.component';
@@ -23,7 +25,8 @@ import { ContestantService } from './contestant.service';
       {path: 'setup', component: ContestsComponent},
       {path: 'contestants', component: ContestantsComponent},
       {path: 'judging', component: ContestJudgingComponent}
-    ])
+    ]),
+    AccordionModule
   ],
   declarations: [
     AppComponent,
