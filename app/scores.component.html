@@ -1,5 +1,5 @@
-<div *ngIf="getCategories().length == 0">
-</div>
+<!-- <div *ngIf="getCategories().length == 0">
+</div> -->
 <div [ngSwitch]="getCategories().length == 0">
   <!-- Judging items for uncategoried contest -->
    <ng-container *ngSwitchCase="true">
