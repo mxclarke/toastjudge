@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import {AccordionModule} from 'primeng/primeng';  //accordion and accordion tab
+import {FieldsetModule} from 'primeng/primeng';
 import {SliderModule} from 'primeng/primeng';
 
 import { AppComponent }  from './app.component';
@@ -12,7 +13,8 @@ import { ContestDetailComponent } from './contest-detail.component';
 import { JudgingManagerComponent } from './judging-manager.component';
 import { ContestantsComponent } from './contestants.component';
 import { ContestJudgingComponent } from './contest-judging.component';
-import { Scores } from './scores.component';
+import { ScoresComponent } from './scores.component';
+import { JudgingItemScoreComponent } from './judging-item-score.component';
 
 import { ContestService } from './contest.service';
 import { ContestantService } from './contestant.service';
@@ -29,6 +31,7 @@ import { ContestantService } from './contestant.service';
       {path: 'judging', component: ContestJudgingComponent}
     ]),
     AccordionModule,
+    FieldsetModule,
     SliderModule
   ],
   declarations: [
@@ -38,7 +41,8 @@ import { ContestantService } from './contestant.service';
     JudgingManagerComponent,
     ContestantsComponent,
     ContestJudgingComponent,
-    Scores
+    ScoresComponent,
+    JudgingItemScoreComponent
   ],
   providers: [ ContestService, ContestantService ],
   bootstrap: [ AppComponent ]

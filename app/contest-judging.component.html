@@ -12,9 +12,6 @@
 
   <p-accordion>
     <p-accordionTab *ngFor="let contestant of selectedContest.contestants" header={{contestant.name}}>
-      Put categories and sliders for judging items here, plus total score down the bottom
-      For this, we need a new directive, and we'll pass in the selectedContest
-      and the contestant. TODO
       <scores [contest]="selectedContest" [contestant]="contestant"></scores>
     </p-accordionTab>
   </p-accordion>

@@ -7,7 +7,13 @@ export const UNCATEGORIED: UncategoriedContest[] = [
   new UncategoriedContest( 'Evaluation',
     [
       new JudgingItem('Analytical Quality', 'Clear, focused',
-       40, 39, 27, 16)
+       40, 39, 27, 16),
+       new JudgingItem('Recommendations', 'Positive, specific, helpful',
+        30, 29, 21, 12),
+        new JudgingItem('Technique', 'Sympathetic, sensitive, motivational',
+         15, 14, 10, 5),
+         new JudgingItem('Summation', 'Concise, encouraging',
+          15, 14, 10, 5)
     ]
   )
 ];
