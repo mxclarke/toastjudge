@@ -43,7 +43,7 @@ export class ContestJudgingComponent implements OnInit {
 
   onChangeContest(contest: Contest): void {
     this.selectedContest = contest;
-    this.contestService.setCurrent(contest);
+    this.contestService.setCurrent(contest.id);
   }
 
 }

@@ -43,9 +43,9 @@ export class ContestsComponent implements OnInit {
   toggleContest(contest:Contest, isChecked: boolean) {
   console.log("Checkbox callback, ischecked  " + isChecked);
     if ( isChecked ) {
-      this.contestService.addSelected(contest);
+      this.contestService.addSelected(contest.id);
     } else {
-      this.contestService.removeSelected(contest);
+      this.contestService.removeSelected(contest.id);
     }
   }
 

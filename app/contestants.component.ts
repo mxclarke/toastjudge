@@ -56,10 +56,10 @@ export class ContestantsComponent implements OnInit {
   toggleContest(contestant: Contestant, contest: Contest, isChecked: boolean) {
     if ( isChecked ) {
       // Add the contestant to the contest
-      this.contestService.addContestant(contestant, contest);
+      this.contestService.addContestant(contestant.id, contest.id);
     } else {
       // Remove the contestant from the contest
-      this.contestService.removeContestant(contestant, contest);
+      this.contestService.removeContestant(contestant.id, contest.id);
     }
   }
 

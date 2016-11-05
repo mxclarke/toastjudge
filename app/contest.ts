@@ -5,10 +5,12 @@ import { ContestData } from './contest-data';
 import { Contestant } from './contestant';
 
 export class Contest {
+  readonly id: number;
   readonly contestData: ContestData;
   private contestants: Contestant[] = [];
 
-  constructor(contestData: ContestData) {
+  constructor(id: number, contestData: ContestData) {
+    this.id = id;
     this.contestData = contestData;
   }
 
