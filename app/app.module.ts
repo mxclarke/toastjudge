@@ -18,6 +18,7 @@ import { JudgingItemScoreComponent } from './judging-item-score.component';
 
 import { ContestService } from './contest.service';
 import { ContestantService } from './contestant.service';
+import { ScoringService } from './scoring.service';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { ContestantService } from './contestant.service';
     ScoresComponent,
     JudgingItemScoreComponent
   ],
-  providers: [ ContestService, ContestantService ],
+  providers: [ ContestService, ContestantService, ScoringService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
