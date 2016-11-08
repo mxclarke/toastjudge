@@ -125,12 +125,3 @@ for adding PrimeNG to this project
 
 TODO
 ## Remaining work
-
-Likely to be using PrimeNG components, http://www.primefaces.org/primeng/#/ and
-https://www.npmjs.com/package/primeng. Quickstart package.json here: https://github.com/primefaces/primeng-quickstart/blob/master/package.json.
-Followed the instructions here https://github.com/mgechev/angular-seed/wiki/Add-PrimeNG
-for adding PrimeNG.
-
-Had a look at Google's Material Design project for Angular 2, but it is
-still in alpha and most of the components I want have not yet been implemented:
-https://github.com/angular/material2.
