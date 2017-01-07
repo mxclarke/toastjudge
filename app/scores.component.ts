@@ -7,6 +7,10 @@ import { Contestant } from './contestant';
 import { Contest } from './contest';
 import { CategoriedContest } from './categoried-contest';
 import { Category } from './category';
+import { JudgingItem } from './judging-item';
+import { PartialScore } from './partial-score';
+
+import { ScoringService } from './scoring.service';
 
 @Component({
   moduleId: module.id,
@@ -20,6 +24,10 @@ export class ScoresComponent {
   @Input()
   contest: Contest;
 
+  totalScore: number;
+
+  constructor(private scoringService: ScoringService) {}
+
   hasCategories(): boolean {
     return this.contest.contestData instanceof CategoriedContest;
   }
@@ -30,5 +38,15 @@ export class ScoresComponent {
     } else {
       return [];
     }
+  }
+
+  onResultChanged(result: number, judgingItem: JudgingItem) {
+    // Update the partial score and get the new total (for this contestant).
+    let partialScore:PartialScore = new PartialScore(judgingItem, result, true);
+    // TODO finalise/lock feature not yet implemented
+    // let partialScore:PartialScore = new PartialScore(judgingItem, result, false);
+
+    this.totalScore = this.scoringService.updatePartialScore(partialScore,
+        this.contestant.id, this.contest.id);
   }
 }

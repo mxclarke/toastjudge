@@ -1,6 +1,6 @@
 // A widget to allow a judge to set a partial score for a contestant.
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { JudgingItem } from './judging-item';
 
@@ -13,6 +13,9 @@ import { JudgingItem } from './judging-item';
 export class JudgingItemScoreComponent implements OnInit {
   @Input()
   judgingItem: JudgingItem;
+
+  @Output()
+  onResultChanged = new EventEmitter<number>();
 
   result: number;
   resultBand: string;
@@ -29,6 +32,8 @@ export class JudgingItemScoreComponent implements OnInit {
   private veryGoodText: string;
   private excellentText: string;
 
+  //constructor(private scoringService: ScoringService) {}
+
   ngOnInit(): void {
     this.fairText = "Fair (0 - " + this.judgingItem.maxFair + ")";
     this.goodText = "Good (" + (this.judgingItem.maxFair+1) + " - " +
@@ -38,7 +43,14 @@ export class JudgingItemScoreComponent implements OnInit {
     this.excellentText = "Excellent";
   }
 
-  onChangeSlider(val: number): void {
+  onChangeSlider(val: number) {
+
+    // Trigger an event to signify that this judging item's result has changed.
+    this.onResultChanged.emit(val);
+    this.result = val;
+
+    // Also make sure the juding item's range text is correct for the
+    // updated value.
     if ( val <= this.judgingItem.maxFair )
       this.resultBand = this.fairText;
     else if ( val <= this.judgingItem.maxGood )

@@ -4,7 +4,7 @@
   <!-- Judging items for uncategoried contest -->
    <ng-container *ngSwitchCase="true">
      <judging-item-score *ngFor="let jItem of contest.contestData.judgingItems"
-        [judgingItem]="jItem"></judging-item-score>
+        [judgingItem]="jItem" (onResultChanged)=onResultChanged($event,jItem)></judging-item-score>
    </ng-container>
 
    <!-- Judging items for categoried contest, not toggleable by default -->
@@ -13,12 +13,11 @@
      </p-fieldset>
    </ng-container>
 </div>
-Put categories and sliders for judging items here, plus total score down the bottom
-For this, we need a new directive, and we'll pass in the selectedContest
-and the contestant. TODO
+
+<!-- Total score for this contestant -->
 <div class="ui-grid ui-grid-responsive ui-grid-pad mxc-total-results">
     <div class="ui-grid-row">
       <span class="ui-grid-col-7"></span>
-      <span class="ui-grid-col-5">(TOTAL)</span>
+      <span class="ui-grid-col-5">TOTAL: {{totalScore}} </span>
     </div>
 </div>

@@ -5,6 +5,9 @@
 // for each judging item for each contestant, and the software sums those
 // partial scores to provide the contestant's total marks according to that
 // judge.
+// Note that the scores are stored in memory. Our service methods should
+// really make use of promises/futures, in the event that we save to a
+// database (TODO).
 import { Injectable } from '@angular/core';
 
 import { PartialScore } from './partial-score';
@@ -14,10 +17,10 @@ class ContestScores {
   // single contest for a single contestant. The contestant ID is simply the
   // contestant's name, but this is irrelevant as far as this service is
   // concerned.
-  scoresMap: Map<string, PartialScore[]>
-    = new Map<string, PartialScore[]>();
+  scoresMap: Map<number, PartialScore[]>
+    = new Map<number, PartialScore[]>();
 
-  updatePartialScore(partialScore: PartialScore, contestantId: string): PartialScore[] {
+  updatePartialScore(partialScore: PartialScore, contestantId: number): PartialScore[] {
     let scores:PartialScore[] = null;
 
     // Find or create the contestant ref in our scoresMap.
@@ -47,15 +50,15 @@ class ContestScores {
 export class ScoringService {
 
   // A map of contest IDs to all the contestant scores for that contest.
-  private scoresMap: Map<string, ContestScores>
-    = new Map<string,ContestScores>();
+  private scoresMap: Map<number, ContestScores>
+    = new Map<number,ContestScores>();
 
   // Updates the partial score (for a single judging item) for the given
   // contestant competing in the given contest, which must be a selected contest.
   // Returns the updated total score if all partial scores for that contestant
   // in that contest have been finalised, otherwise zero.
   updatePartialScore(partialScore: PartialScore,
-      contestantId: string, contestId: string): number {
+      contestantId: number, contestId: number): number {
 
       // Find or create the contest ref in our scoresMap.
       let contestScores: ContestScores = null;
@@ -71,10 +74,10 @@ export class ScoringService {
       let scores: PartialScore[] = contestScores.updatePartialScore(partialScore, contestantId);
 
       // Return the contestant's total score, if valid, for the contest.
-      return this.getTotalScore(scores);
+      return this.calculateTotalScore(scores);
   }
 
-  private getTotalScore(partialScores: PartialScore[]): number {
+  private calculateTotalScore(partialScores: PartialScore[]): number {
     let totalScore: number = 0;
 
     // Can't use foreach, because we need to break out as soon as we find
