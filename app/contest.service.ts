@@ -11,9 +11,6 @@ import { CategoriedContest } from './categoried-contest';
 import { Contestant } from './contestant';
 import { ContestantService } from './contestant.service';
 
-//import { CATEGORIED } from './default-contests';
-//import { UNCATEGORIED } from './default-contests';
-
 @Injectable()
 export class ContestService {
 
@@ -24,7 +21,6 @@ export class ContestService {
 
   constructor(readonly contestantService: ContestantService,
       private http:Http) {
-      // TODO change this to ngOnInit
     this.init();
   }
 
