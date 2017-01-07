@@ -28,15 +28,13 @@ export class ScoresComponent {
 
   constructor(private scoringService: ScoringService) {}
 
-  hasCategories(): boolean {
-    return this.contest.contestData instanceof CategoriedContest;
-  }
-
   getCategories(): Category[] {
-    if ( this.contest.contestData instanceof CategoriedContest ) {
-      return this.contest.contestData.categories;
-    } else {
+    if ( this.contest.contestData.categories === undefined ) {
+      console.log("scores.component: not a categoried contest");
       return [];
+    } else {
+      console.log("scores.component: a categoried contest");
+      return this.contest.contestData.categories;
     }
   }
 

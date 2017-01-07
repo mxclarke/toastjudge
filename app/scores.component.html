@@ -10,6 +10,9 @@
    <!-- Judging items for categoried contest, not toggleable by default -->
    <ng-container *ngSwitchCase="false">
      <p-fieldset *ngFor="let category of getCategories()" legend={{category.name}}>
+       <judging-item-score *ngFor="let jItem of category.judgingItems"
+          [judgingItem]="jItem" (onResultChanged)=onResultChanged($event,jItem)>
+        </judging-item-score>
      </p-fieldset>
    </ng-container>
 </div>

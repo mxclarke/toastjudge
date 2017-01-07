@@ -5,8 +5,8 @@ import { ContestData } from './contest-data';
 import { Category } from './category';
 
 export class CategoriedContest implements ContestData {
-  contestType: string;
-  categories: Category[];
+  readonly contestType: string;
+  readonly categories: Category[];
 
   constructor(contestType: string, categories: Category[]) {
     this.contestType = contestType;

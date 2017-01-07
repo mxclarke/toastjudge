@@ -1,3 +1,6 @@
+import { Category } from './category';
+
 export interface ContestData {
-  contestType: string;
+  readonly contestType: string;
+  readonly categories?: Category[];
 }
