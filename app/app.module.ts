@@ -1,5 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule, JsonpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -24,6 +25,8 @@ import { ScoringService } from './scoring.service';
 @NgModule({
   imports: [
     BrowserModule,
+    HttpModule,
+    JsonpModule,
     FormsModule,
     RouterModule.forRoot ([
     {path: '', redirectTo: '/setup', pathMatch: 'full'},

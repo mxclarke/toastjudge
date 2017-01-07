@@ -1,46 +1,81 @@
 import { Injectable } from '@angular/core';
 
+import { Http, Response } from '@angular/http';
+
+import { Observable }  from 'rxjs/Observable';
+
 import { Contest } from './contest';
 import { ContestData } from './contest-data';
+import { UncategoriedContest } from './uncategoried-contest';
+import { CategoriedContest } from './categoried-contest';
 import { Contestant } from './contestant';
 import { ContestantService } from './contestant.service';
 
-import { CATEGORIED } from './default-contests';
-import { UNCATEGORIED } from './default-contests';
+//import { CATEGORIED } from './default-contests';
+//import { UNCATEGORIED } from './default-contests';
 
 @Injectable()
 export class ContestService {
+
   allContests: Contest[] = [];
   contestsSelected: Contest[] = [];
   currentContest: Contest;
   private idTracker: number = 0;
 
-  constructor(readonly contestantService: ContestantService) {
+  constructor(readonly contestantService: ContestantService,
+      private http:Http) {
+      // TODO change this to ngOnInit
     this.init();
   }
+
   private init() : void {
-    // Combine the two array types.
-    let contestData: ContestData[]
-        = (<ContestData[]>UNCATEGORIED).concat(CATEGORIED);
-    // Use the contest data to create a list of contests.
-    contestData.forEach(
-      elem => {
-        let nextId = this.generateNextId();
-        this.allContests.push(new Contest(nextId, elem));
-      }
-    );
+    // Http.get() returns an Observable<Response>. There are also post(), put(),
+    // delete(), patch(), head() and request() methods.
+      this.http.get('data/default-contests.json')
+      .map(results => results.json())
+//      .map(body => body.data || {})
+      .map(data => this.extractData(data))
+      .catch(this.handleError)
+      .subscribe(contests => {
+        // Don't assign directly, because you want to retain the original
+        // object reference that is being observed, because that is what
+        // client components are listening on.
+        Object.assign(this.allContests, contests);
+      });
   }
+
+  private extractData(data:any): Contest[] {
+
+        let uncategoried:UncategoriedContest[]
+          = <UncategoriedContest[]>data.uncategoried;
+        let categoried:CategoriedContest[]
+          = <CategoriedContest[]>data.categoried;
+        let contestData: ContestData[]
+            = (<ContestData[]>uncategoried).concat(categoried);
+
+        let results:Contest[] = [];
+        // Use the contest data to create a list of contests.
+        contestData.forEach(
+          elem => {
+            let nextId = this.generateNextId();
+            results.push(new Contest(nextId, elem));
+          }
+        );
+        console.log("contest.service contestsFromJson returning len " + results.length);
+        return results;
+  }
+
   private generateNextId(): number {
     return ++this.idTracker;
   }
 
-  // Returns a list of all possible contests.
-  getContests(): Promise<Contest[]> {
-    // At the moment we're just fetching from our server-side JSON, but
-    // this could change in the future to fetch from a remote service,
-    // so the return type of this method should still be a Promise object.
-
-    return Promise.resolve(this.allContests);
+  // Returns an Observable of all the available contests. The contest data is
+  // being loaded remotely (or from a JSON file for the purposes of this demo),
+  // therefore the contests will be uninitialised on immediate startup.
+  // Therefore, client components need to be able to listen for when the data
+  // is ready, so they can update their views accordingly.
+  getContests(): Observable<Contest[]> {
+    return Observable.of(this.allContests);
   }
 
   // Returns a list of all the contests that the user (judge) has selected
@@ -57,7 +92,7 @@ export class ContestService {
     let idx: number = this.getSelectedIndex(contestId);
     if ( idx < 0 ) {
       // Check that a contest with this ID even exists. If so, add it.
-      let contest = this.getContest(contestId);
+      let contest:Contest = this.getContest(contestId);
       if ( contest != null ) {
         this.contestsSelected.push(contest);
       } else {
@@ -80,7 +115,7 @@ export class ContestService {
     if ( contest != null ) {
       this.contestantService.getContestant(contestantId)
       .subscribe(
-        contestant => contest.addContestant(contestant),
+       contestant => contest.addContestant(contestant),
         error => this.handleError(<any>error)
         //   error =>  this.errorMessage = <any>error TODO
       );
@@ -124,8 +159,18 @@ export class ContestService {
     );
   }
 
-  private handleError(error: any): void {
-    // TODO log it properly
-    console.error('An error occurred', error); // for demo purposes only
+  private handleError (error: Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg: string;
+    if (error instanceof Response) {
+      const body = error.json() || '';
+      const err = body.error || JSON.stringify(body);
+      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+        errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg, error);
+    return Observable.throw(errMsg);
   }
+
 }

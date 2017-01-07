@@ -1,0 +1,290 @@
+{
+  "test1": "My test",
+  "uncategoried": [
+    {
+      "contestType": "Evaluation",
+      "judgingItems": [
+        {
+          "name": "Analytical Quality",
+          "description": "Clear, focused",
+          "maxExcellent": 40,
+          "maxVeryGood": 39,
+          "maxGood": 27,
+          "maxFair": 16
+        },
+        {
+          "name": "Recommendations",
+          "description": "Positive specific helpful",
+          "maxExcellent": 30,
+          "maxVeryGood": 29,
+          "maxGood": 21,
+          "maxFair": 12
+        },
+        {
+          "name": "Technique",
+          "description": "Sympathetic, sensitive, motivational",
+          "maxExcellent": 15,
+          "maxVeryGood": 14,
+          "maxGood": 10,
+          "maxFair": 5
+        },
+        {
+          "name": "Summation",
+          "description": "Concise, encouraging",
+          "maxExcellent": 15,
+          "maxVeryGood": 14,
+          "maxGood": 10,
+          "maxFair": 5
+        }
+      ]
+    }
+  ],
+
+  "categoried": [
+    {
+      "contestType": "Table Topics",
+      "categories": [
+        {
+          "name": "Contents",
+          "judgingItems": [
+            {
+              "name": "Speech Development",
+              "description": "Opening, Body, Close, Organisation, Smoothness",
+              "maxExcellent": 30,
+              "maxVeryGood": 29,
+              "maxGood": 22,
+              "maxFair": 16
+            },
+            {
+              "name": "Effectiveness",
+              "description": "Logic, directness, enthusiasm, achievement of purpose, audience response",
+              "maxExcellent": 25,
+              "maxVeryGood": 25,
+              "maxGood": 17,
+              "maxFair": 10
+            }
+          ]
+        },
+        {
+          "name": "Delivery",
+          "judgingItems": [
+            {
+              "name": "Physical",
+              "description": "Appearance, body language, speaking area",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 10,
+              "maxFair": 5
+            },
+            {
+              "name": "Voice",
+              "description": "Flexibility, volume",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 10,
+              "maxFair": 5
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "judgingItems": [
+            {
+              "name": "Appropriateness",
+              "description": "To speech purpose and audience",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 7,
+              "maxFair": 5
+            },
+            {
+              "name": "Correctness",
+              "description": "Grammar, pronunciation, word selection",
+              "maxExcellent": 5,
+              "maxVeryGood": 4,
+              "maxGood": 3,
+              "maxFair": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "contestType": "International Speech",
+      "categories": [
+        {
+          "name": "Contents",
+          "judgingItems": [
+            {
+              "name": "Speech Development",
+              "description": "Structure, organisation, support material",
+              "maxExcellent": 20,
+              "maxVeryGood": 19,
+              "maxGood": 13,
+              "maxFair": 8
+            },
+            {
+              "name": "Effectiveness",
+              "description": "Achievement of purpose, interest, reception",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 10,
+              "maxFair": 5
+            },
+            {
+              "name": "Speech Value",
+              "description": "Ideas, logic, original thought",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 10,
+              "maxFair": 5
+            }
+          ]
+        },
+        {
+          "name": "Delivery",
+          "judgingItems": [
+            {
+              "name": "Physical",
+              "description": "Appearance, body language, speaking area",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 6,
+              "maxFair": 3
+            },
+            {
+              "name": "Voice",
+              "description": "Flexibility, volume",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 6,
+              "maxFair": 3
+            },
+            {
+              "name": "Manner",
+              "description": "Directness, assurance, enthusiasm",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 6,
+              "maxFair": 3
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "judgingItems": [
+            {
+              "name": "Appropriateness",
+              "description": "To speech purpose and audience",
+               "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 6,
+              "maxFair": 3
+            },
+            {
+              "name": "Correctness",
+              "description": "Grammar, pronunciation, word selection",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 6,
+              "maxFair": 3
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "contestType": "Humorous Speech",
+      "categories": [
+        {
+          "name": "Contents",
+          "judgingItems": [
+            {
+              "name": "Speech Development",
+              "description": "Structure, organisation, support material",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 11,
+              "maxFair": 9
+            },
+            {
+              "name": "Effectiveness",
+              "description": "Achievement of purpose, interest, reception",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 7,
+              "maxFair": 5
+            },
+            {
+              "name": "Speech Value",
+              "description": "Ideas, logic, original thought",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 11,
+              "maxFair": 9
+            },
+           {
+              "name": "Audience response",
+              "description": "Attentiveness, laughter, interest, reception",
+              "maxExcellent": 15,
+              "maxVeryGood": 14,
+              "maxGood": 11,
+              "maxFair": 9
+            }
+          ]
+        },
+        {
+          "name": "Delivery",
+          "judgingItems": [
+            {
+              "name": "Physical",
+              "description": "Appearance, body language, speaking area",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 7,
+              "maxFair": 5
+            },
+            {
+              "name": "Voice",
+              "description": "Flexibility, volume",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 7,
+              "maxFair": 5
+            },
+            {
+              "name": "Manner",
+              "description": "Directness, assurance, enthusiasm",
+              "maxExcellent": 10,
+              "maxVeryGood": 9,
+              "maxGood": 7,
+              "maxFair": 5
+            }
+          ]
+        },
+        {
+          "name": "Language",
+          "judgingItems": [
+            {
+              "name": "Appropriateness",
+              "description": "To speech purpose and audience",
+               "maxExcellent": 10,
+              "maxVeryGood": 8,
+              "maxGood": 7,
+              "maxFair": 5
+            },
+            {
+              "name": "Correctness",
+              "description": "Grammar, pronunciation, word selection",
+              "maxExcellent": 5,
+              "maxVeryGood": 4,
+              "maxGood": 3,
+              "maxFair": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

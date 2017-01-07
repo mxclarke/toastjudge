@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Observable }     from 'rxjs/Observable';
+
 import { Contest } from './contest';
 import { ContestService } from './contest.service';
 
@@ -7,22 +9,22 @@ import { ContestService } from './contest.service';
     moduleId: module.id,
     selector: 'setup',
     template: `
-      <ul>
-        <li *ngFor="let contest of contests" (click)="onSelect(contest)">
-          <input type="checkbox" name="isActive"
-            (change)="toggleContest(contest, $event.target.checked)"
-            (click)="$event.stopPropagation()"
-            [checked]="isChecked(contest)"
-          >
-          {{contest.getContestType()}}
-        </li>
-      </ul>
-      <contest [contest]="selectedContest"></contest>
+        <ul>
+          <li *ngFor="let contest of contests" (click)="onSelect(contest)">
+            <input type="checkbox" name="isActive"
+              (change)="toggleContest(contest, $event.target.checked)"
+              (click)="$event.stopPropagation()"
+              [checked]="isChecked(contest)"
+            >
+            {{contest.getContestType()}}
+          </li>
+        </ul>
+        <contest [contest]="selectedContest"></contest>
     `
 })
 export class ContestsComponent implements OnInit {
   contests: Contest[];
-  selectedContests: Contest[];
+  selectedContests: Contest[] = [];
   selectedContest: Contest;
 
   constructor(private contestService: ContestService) {}
@@ -34,7 +36,12 @@ export class ContestsComponent implements OnInit {
   initContests(): void {
     console.log("init ContestsComponent");
     this.contestService.getContests()
-      .then(contests => this.contests = contests);
+    .subscribe(
+      contests => {
+      this.contests = contests;
+      }
+    );
+
     this.contestService.getSelected()
       .then(contests => this.selectedContests = contests);
   }
