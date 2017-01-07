@@ -104,7 +104,13 @@ npm install
 at the command prompt.
 
 Once the packages have downloaded and compilation is complete, the app
-will automatically launch in your default browser.
+will automatically launch in your default browser at localhost:3000.
+
+On subsequent occasions, run:
+```
+npm start
+```
+and again, the app will launch in your default browser.
 
 ## Technologies
 
