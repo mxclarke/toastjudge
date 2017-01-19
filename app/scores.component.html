@@ -4,14 +4,16 @@
   <!-- Judging items for uncategoried contest -->
    <ng-container *ngSwitchCase="true">
      <judging-item-score *ngFor="let jItem of contest.contestData.judgingItems"
-        [judgingItem]="jItem" (onResultChanged)=onResultChanged($event,jItem)></judging-item-score>
+        [judgingItem]="jItem" [result]="getResult(jItem)"
+        (onResultChanged)=onResultChanged($event,jItem)></judging-item-score>
    </ng-container>
 
    <!-- Judging items for categoried contest, not toggleable by default -->
    <ng-container *ngSwitchCase="false">
      <p-fieldset *ngFor="let category of getCategories()" legend={{category.name}}>
        <judging-item-score *ngFor="let jItem of category.judgingItems"
-          [judgingItem]="jItem" (onResultChanged)=onResultChanged($event,jItem)>
+          [judgingItem]="jItem" [result]="getResult(jItem)"
+          (onResultChanged)=onResultChanged($event,jItem)>
         </judging-item-score>
      </p-fieldset>
    </ng-container>

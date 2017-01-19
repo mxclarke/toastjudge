@@ -14,10 +14,12 @@ export class JudgingItemScoreComponent implements OnInit {
   @Input()
   judgingItem: JudgingItem;
 
+  @Input()
+  result: number;
+
   @Output()
   onResultChanged = new EventEmitter<number>();
 
-  result: number;
   resultBand: string;
 
   // One issue is that I would like to make the following four as contestants
@@ -32,8 +34,6 @@ export class JudgingItemScoreComponent implements OnInit {
   private veryGoodText: string;
   private excellentText: string;
 
-  //constructor(private scoringService: ScoringService) {}
-
   ngOnInit(): void {
     this.fairText = "Fair (0 - " + this.judgingItem.maxFair + ")";
     this.goodText = "Good (" + (this.judgingItem.maxFair+1) + " - " +
@@ -41,6 +41,9 @@ export class JudgingItemScoreComponent implements OnInit {
     this.veryGoodText = "Very Good (" + (this.judgingItem.maxGood+1) + " - " +
         this.judgingItem.maxVeryGood + ")";
     this.excellentText = "Excellent";
+
+    // The component is sometimes initialised with a previous result, or else 0.
+    this.adjustResultBand(this.result);
   }
 
   onChangeSlider(val: number) {
@@ -51,12 +54,17 @@ export class JudgingItemScoreComponent implements OnInit {
 
     // Also make sure the juding item's range text is correct for the
     // updated value.
-    if ( val <= this.judgingItem.maxFair )
-      this.resultBand = this.fairText;
-    else if ( val <= this.judgingItem.maxGood )
-      this.resultBand = this.goodText;
-    else if ( val <= this.judgingItem.maxVeryGood )
-      this.resultBand = this.veryGoodText;
-    else this.resultBand = this.excellentText;
+    this.adjustResultBand(val);
+  }
+
+  // The judging item's range text needs to be correct for the slider's value.
+  private adjustResultBand(val: number) {
+      if ( val <= this.judgingItem.maxFair )
+        this.resultBand = this.fairText;
+      else if ( val <= this.judgingItem.maxGood )
+        this.resultBand = this.goodText;
+      else if ( val <= this.judgingItem.maxVeryGood )
+        this.resultBand = this.veryGoodText;
+      else this.resultBand = this.excellentText;
   }
 }

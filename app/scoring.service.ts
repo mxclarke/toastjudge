@@ -10,6 +10,7 @@
 // database (TODO).
 import { Injectable } from '@angular/core';
 
+import { JudgingItem } from './judging-item';
 import { PartialScore } from './partial-score';
 
 class ContestScores {
@@ -44,6 +45,32 @@ class ContestScores {
 
     return scores;
   }
+
+  // Returns the PartialScore for the given contestant and given judging item,
+  // or null if not found.
+  getPartialScore(contestantId: number, judgingItem: JudgingItem ): PartialScore {
+    let scores:PartialScore[] = null;
+
+    // Find the contestant ref in our scoresMap.
+    if ( this.scoresMap.has(contestantId) ) {
+      scores = this.scoresMap.get(contestantId);
+      // Find the partial score with the given judging item.
+      let partialScore: PartialScore =
+          scores.find(elem => elem.judgingItem.name === judgingItem.name);
+      return partialScore;
+    } else {
+      return null;
+    }
+  }
+
+  getPartialScores(contestantId: number): PartialScore[] {
+    // Find the contestant ref in our scoresMap.
+    if ( this.scoresMap.has(contestantId) ) {
+      return this.scoresMap.get(contestantId);
+    } else {
+      return null;
+    }
+  }
 }
 
 @Injectable()
@@ -58,7 +85,7 @@ export class ScoringService {
   // Returns the updated total score if all partial scores for that contestant
   // in that contest have been finalised, otherwise zero.
   updatePartialScore(partialScore: PartialScore,
-      contestantId: number, contestId: number): number {
+      contestId: number, contestantId: number): number {
 
       // Find or create the contest ref in our scoresMap.
       let contestScores: ContestScores = null;
@@ -75,6 +102,38 @@ export class ScoringService {
 
       // Return the contestant's total score, if valid, for the contest.
       return this.calculateTotalScore(scores);
+  }
+
+  // Returns the total score for the given contest and contestant, or zero
+  // if none recorded so far.
+  getTotalScore(contestId: number, contestantId: number): number {
+    // Get the contest ref for the contestId.
+    let contestScores: ContestScores = null;
+    if ( this.scoresMap.has(contestId) ) {
+      contestScores = this.scoresMap.get(contestId);
+      let partialScores: PartialScore[] = contestScores.getPartialScores(contestantId);
+      if ( partialScores ) {
+        return this.calculateTotalScore(partialScores);
+      }
+    }
+
+    // Not found.
+    return 0;
+  }
+
+  // Returns the PartialScore for the given contest, contestant and judging item,
+  // or null if not found.
+  getPartialScore(contestId: number, contestantId: number,
+      judgingItem: JudgingItem ): PartialScore {
+      // Get the contest ref for the contestId.
+      let contestScores: ContestScores = null;
+      if ( this.scoresMap.has(contestId) ) {
+        contestScores = this.scoresMap.get(contestId);
+        return contestScores.getPartialScore(contestantId, judgingItem);
+      } else {
+        // not found
+        return null;
+      }
   }
 
   private calculateTotalScore(partialScores: PartialScore[]): number {
